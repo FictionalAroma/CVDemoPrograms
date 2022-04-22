@@ -1,4 +1,4 @@
-﻿using Project1;
+﻿using IdentityServer;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -19,6 +19,8 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
+
+    app.MapGet("/", () => "Hello World");
 
     app.Run();
 }
