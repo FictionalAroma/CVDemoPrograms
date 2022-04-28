@@ -23,11 +23,14 @@ namespace IdentityServer
 
                     
                 })
+
+                
                 .AddInMemoryIdentityResources(InMemoryData.IdentityResourceConfig.IdentityResources)
                 .AddInMemoryApiScopes(InMemoryData.IdentityResourceConfig.ApiScopes)
                 .AddInMemoryClients(InMemoryData.IdentityResourceConfig.Clients)
                 .AddInMemoryApiResources(InMemoryData.IdentityResourceConfig.ApiResources)
                 .AddTestUsers(InMemoryData.TestUserStore.Users);
+
 
             return builder.Build();
         }
