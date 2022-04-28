@@ -3,7 +3,7 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using IdentityServer.Areas.Identity.Data;
+using Identity.DataAccess.Objects;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

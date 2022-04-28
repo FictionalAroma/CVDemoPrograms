@@ -1,3 +1,6 @@
+using Identity.DataAccess.DataContext;
+using Identity.DataAccess.Objects;
+using Microsoft.AspNetCore.Identity;
 using Serilog;
 
 namespace IdentityServer
@@ -7,7 +10,17 @@ namespace IdentityServer
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
             // uncomment if you want to add a UI
-            //builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages();
+
+            
+
+            builder.Services.AddIdentity<IdentityServerUser, IdentityRole>(options =>
+                {
+                    
+                })
+                .AddEntityFrameworkStores<IdentityServerContext>()
+                .AddDefaultTokenProviders();
+
 
             builder.Services.AddIdentityServer(options =>
                 {
@@ -21,15 +34,13 @@ namespace IdentityServer
                     options.Events.RaiseSuccessEvents = true;
 
 
-                    
-                })
 
-                
+                })
+                .AddAspNetIdentity<IdentityServerUser>()
                 .AddInMemoryIdentityResources(InMemoryData.IdentityResourceConfig.IdentityResources)
                 .AddInMemoryApiScopes(InMemoryData.IdentityResourceConfig.ApiScopes)
                 .AddInMemoryClients(InMemoryData.IdentityResourceConfig.Clients)
-                .AddInMemoryApiResources(InMemoryData.IdentityResourceConfig.ApiResources)
-                .AddTestUsers(InMemoryData.TestUserStore.Users);
+                .AddInMemoryApiResources(InMemoryData.IdentityResourceConfig.ApiResources);
 
 
             return builder.Build();
@@ -45,14 +56,14 @@ namespace IdentityServer
             }
 
             // uncomment if you want to add a UI
-            //app.UseStaticFiles();
-            //app.UseRouting();
+            app.UseStaticFiles();
+            app.UseRouting();
 
             app.UseIdentityServer();
 
             // uncomment if you want to add a UI
-            //app.UseAuthorization();
-            //app.MapRazorPages().RequireAuthorization();
+            app.UseAuthorization();
+            app.MapRazorPages().RequireAuthorization();
 
             return app;
         }

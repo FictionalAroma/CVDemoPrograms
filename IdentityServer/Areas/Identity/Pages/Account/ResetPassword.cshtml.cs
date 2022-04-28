@@ -4,7 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using IdentityServer.Areas.Identity.Data;
+using Identity.DataAccess.Objects;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

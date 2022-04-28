@@ -1,14 +1,15 @@
-﻿using IdentityServer.Areas.Identity.Data;
+﻿using Identity.DataAccess.Objects;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdentityServer.Data;
+namespace Identity.DataAccess.DataContext;
 
 public class IdentityServerContext : IdentityDbContext<IdentityServerUser>
 {
     public IdentityServerContext(DbContextOptions<IdentityServerContext> options)
         : base(options)
     {
+
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
