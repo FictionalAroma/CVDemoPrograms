@@ -1,4 +1,6 @@
+using System;
 using IdentityServer;
+using Microsoft.AspNetCore.Builder;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()

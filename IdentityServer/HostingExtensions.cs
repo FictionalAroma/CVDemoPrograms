@@ -1,8 +1,12 @@
 using System.Reflection;
 using Identity.DataAccess.DataContext;
 using Identity.DataAccess.Objects;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace IdentityServer
@@ -12,7 +16,7 @@ namespace IdentityServer
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
             // uncomment if you want to add a UI
-            builder.Services.AddRazorPages();
+            //builder.Services.AddRazorPages();
 
             builder.Services.AddDbContext<IdentityServerContext>(dbBuilder =>
             {
@@ -69,7 +73,7 @@ namespace IdentityServer
 
             // uncomment if you want to add a UI
             app.UseAuthorization();
-            app.MapRazorPages().RequireAuthorization();
+            //app.MapRazorPages().RequireAuthorization();
 
             return app;
         }
