@@ -1,6 +1,8 @@
+using System.Reflection;
 using Identity.DataAccess.DataContext;
 using Identity.DataAccess.Objects;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace IdentityServer
@@ -12,7 +14,10 @@ namespace IdentityServer
             // uncomment if you want to add a UI
             builder.Services.AddRazorPages();
 
-            
+            builder.Services.AddDbContext<IdentityServerContext>(dbBuilder =>
+            {
+                dbBuilder.UseSqlite(builder.Configuration.GetConnectionString("IdentityServerContextConnection"));
+            });
 
             builder.Services.AddIdentity<IdentityServerUser, IdentityRole>(options =>
                 {
@@ -36,6 +41,7 @@ namespace IdentityServer
 
 
                 })
+                .AddDefaultEndpoints()
                 .AddAspNetIdentity<IdentityServerUser>()
                 .AddInMemoryIdentityResources(InMemoryData.IdentityResourceConfig.IdentityResources)
                 .AddInMemoryApiScopes(InMemoryData.IdentityResourceConfig.ApiScopes)

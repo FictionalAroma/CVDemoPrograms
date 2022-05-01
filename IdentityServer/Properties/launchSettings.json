@@ -2,12 +2,12 @@
   "profiles": {
     "SelfHost": {
       "commandName": "Project",
-      "dotnetRunMessages":  true, 
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Dev"
+        "ASPNETCORE_ENVIRONMENT": "dev"
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "https://localhost:5001",
+      "dotnetRunMessages": true
     }
   }
 }

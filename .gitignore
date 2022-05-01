@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 *.map
 /IdentityServer/wwwroot/lib
+*.db-shm
+*.db-wal
+/IdentityServer/IdentityServer.db
