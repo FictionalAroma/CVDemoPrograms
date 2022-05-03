@@ -366,3 +366,4 @@ FodyWeavers.xsd
 *.db-shm
 *.db-wal
 /IdentityServer/IdentityServer.db
+/Identity.DataAccess/IdentityServer.db
