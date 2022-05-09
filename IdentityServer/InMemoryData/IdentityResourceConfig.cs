@@ -5,6 +5,10 @@ namespace IdentityServer.InMemoryData
 {
     public static class IdentityResourceConfig
     {
+
+        public const string AdminRole = "Admin";
+        public const string UserRole = "BaseUser";
+
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource []
             {
@@ -18,7 +22,7 @@ namespace IdentityServer.InMemoryData
             {
                 new ApiScope("battleship.user", "Basic Battleship Player"),
                 new ApiScope("battleship.api", "API Scope for the API"),
-  new ApiScope("battleship.Admin", "Battleship user with elevated privilages"),
+                new ApiScope("battleship.Admin", "Battleship user with elevated privilages"),
             };
         public static IEnumerable<ApiResource> ApiResources => new[]
         {
@@ -53,9 +57,9 @@ namespace IdentityServer.InMemoryData
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = {"https://localhost:5444/signin-oidc"},
-                    FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
-                    PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
+                    RedirectUris = {"https://localhost:7080/signin-oidc"},
+                    FrontChannelLogoutUri = "https://localhost:7080",
+                    PostLogoutRedirectUris = {"https://localhost:7080/signout-callback-oidc"},
 
                     AllowOfflineAccess = true,
                     AllowedScopes = {"openid", "profile", "battleship.user", "battleship.admin"},

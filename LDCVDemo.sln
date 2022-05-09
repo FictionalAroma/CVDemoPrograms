@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.DataAccess", "Iden
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{2A7CD208-FBA2-4586-93A3-CE5CD45F33C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.TestFrontend", "IdentityServer.TestFrontend\IdentityServer.TestFrontend.csproj", "{C165E573-E128-4595-8091-563B6E82916A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.TestFrontend", "IdentityServer.TestFrontend\IdentityServer.TestFrontend.csproj", "{C165E573-E128-4595-8091-563B6E82916A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.ClientLib", "Identity.ClientLib\Identity.ClientLib.csproj", "{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{C165E573-E128-4595-8091-563B6E82916A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C165E573-E128-4595-8091-563B6E82916A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C165E573-E128-4595-8091-563B6E82916A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{2D0CC82D-C0F9-4E3C-87FD-78DC2D53F0E5} = {2A7CD208-FBA2-4586-93A3-CE5CD45F33C2}
 		{EB53990F-0E03-4847-AB0E-8A576ED936E1} = {2A7CD208-FBA2-4586-93A3-CE5CD45F33C2}
 		{C165E573-E128-4595-8091-563B6E82916A} = {2A7CD208-FBA2-4586-93A3-CE5CD45F33C2}
+		{D91A6B1B-83C1-43DE-941D-2631FE4AD2B8} = {2A7CD208-FBA2-4586-93A3-CE5CD45F33C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {824C6CC7-CC09-4A0E-AB16-E1047B2B3C19}

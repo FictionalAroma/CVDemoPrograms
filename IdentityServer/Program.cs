@@ -22,7 +22,11 @@ try
         .ConfigureServices()
         .ConfigurePipeline();
 
-    app.MapGet("/", () => "Hello World");
+#if DEBUG
+    app.DataSeeding();
+#endif
+
+    app.MapGet("/testget", () => "Hello World");
 
     app.Run();
 }

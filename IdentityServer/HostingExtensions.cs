@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Identity.DataAccess.DataContext;
 using Identity.DataAccess.Objects;
@@ -16,17 +17,15 @@ namespace IdentityServer
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
             // uncomment if you want to add a UI
-            //builder.Services.AddRazorPages();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             builder.Services.AddDbContext<IdentityServerContext>(dbBuilder =>
             {
                 dbBuilder.UseSqlite(builder.Configuration.GetConnectionString("IdentityServerContextConnection"));
             });
 
-            builder.Services.AddIdentity<IdentityServerUser, IdentityRole>(options =>
-                {
-                    
-                })
+            builder.Services.AddIdentity<LDSSOUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityServerContext>()
                 .AddDefaultTokenProviders();
 
@@ -43,15 +42,18 @@ namespace IdentityServer
                     options.Events.RaiseSuccessEvents = true;
 
 
-
+                    
                 })
                 .AddDefaultEndpoints()
-                .AddAspNetIdentity<IdentityServerUser>()
+                .AddAspNetIdentity<LDSSOUser>()
                 .AddInMemoryIdentityResources(InMemoryData.IdentityResourceConfig.IdentityResources)
                 .AddInMemoryApiScopes(InMemoryData.IdentityResourceConfig.ApiScopes)
                 .AddInMemoryClients(InMemoryData.IdentityResourceConfig.Clients)
                 .AddInMemoryApiResources(InMemoryData.IdentityResourceConfig.ApiResources);
 
+#if DEBUG
+            builder.Services.AddScoped<InMemoryData.DataSeeder>();
+#endif
 
             return builder.Build();
         }
@@ -72,10 +74,25 @@ namespace IdentityServer
             app.UseIdentityServer();
 
             // uncomment if you want to add a UI
+            //app.UseAuthentication();
             app.UseAuthorization();
-            //app.MapRazorPages().RequireAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages().RequireAuthorization();
+            });
+            return app;
+        }
 
+        public static WebApplication DataSeeding(this WebApplication app)
+        {
+#if DEBUG
+            using var scope = app.Services.CreateScope();
+            var seeder = scope.ServiceProvider.GetService<InMemoryData.DataSeeder>();
+
+            seeder?.RunDefaultUserSeeding();
+#endif
             return app;
         }
     }
+
 }

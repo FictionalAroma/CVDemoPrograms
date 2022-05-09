@@ -1,7 +1,8 @@
+using Identity.ClientLib;
+using Microsoft.IdentityModel.Tokens;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
 
 builder.Services.AddAuthentication((options) =>
 {
@@ -13,11 +14,37 @@ builder.Services.AddAuthentication((options) =>
 {
     cookieOptions.ExpireTimeSpan = TimeSpan.FromMinutes(10);
 })
-.AddOpenIdConnect(oidcOptions =>
+.AddOpenIdConnect("SSOServer", oidcOptions =>
 {
-    oidcOptions.Authority = "identiyurlhere";
+    var settings = builder.Configuration.GetSection("OidcSettings").Get<OidcConfigSettings>();
 
+    oidcOptions.Authority = settings.Authority;
+    oidcOptions.ClientId = settings.ClientID;
+    settings.Scopes.ForEach(s => oidcOptions.Scope.Add(s));
+    oidcOptions.ClientSecret = settings.ClientSecret;
+
+    oidcOptions.GetClaimsFromUserInfoEndpoint = true;
+    oidcOptions.ResponseType = "code";
+
+    oidcOptions.TokenValidationParameters.NameClaimType = "name";
+    oidcOptions.TokenValidationParameters.RoleClaimType = "role";
+
+    oidcOptions.GetClaimsFromUserInfoEndpoint = true;
+    oidcOptions.SaveTokens = true;
+
+    oidcOptions.TokenValidationParameters = new TokenValidationParameters()
+    {
+        NameClaimType = "name",
+        RoleClaimType = "role"
+    };
 });
+
+// Add services to the container.
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizePage("/Danger");
+});
+
 
 
 
@@ -37,7 +64,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

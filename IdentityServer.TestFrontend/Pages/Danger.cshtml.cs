@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace IdentityServer.TestFrontend.Pages
 {
-    public class DangeryModel : PageModel
+    [Authorize]
+    public class DangerModel : PageModel
     {
-        private readonly ILogger<DangeryModel> _logger;
+        private readonly ILogger<DangerModel> _logger;
 
-        public DangeryModel(ILogger<DangeryModel> logger)
+        public DangerModel(ILogger<DangerModel> logger)
         {
             _logger = logger;
         }

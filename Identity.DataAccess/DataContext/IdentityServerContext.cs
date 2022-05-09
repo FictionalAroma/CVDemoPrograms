@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.DataAccess.DataContext;
 
-public class IdentityServerContext : IdentityDbContext<IdentityServerUser>
+public class IdentityServerContext : IdentityDbContext<LDSSOUser>
 {
     public IdentityServerContext(DbContextOptions<IdentityServerContext> options)
         : base(options)
