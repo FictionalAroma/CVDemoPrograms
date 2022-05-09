@@ -32,6 +32,7 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+[Ll]ib/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -362,8 +363,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 *.map
-/IdentityServer/wwwroot/lib
+*/wwwroot/lib/*
 *.db-shm
 *.db-wal
-/IdentityServer/IdentityServer.db
-/Identity.DataAccess/IdentityServer.db
+*.db
+*.js
