@@ -1,4 +1,6 @@
-﻿using Project1;
+using System;
+using IdentityServer;
+using Microsoft.AspNetCore.Builder;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -19,6 +21,12 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
+
+#if DEBUG
+    app.DataSeeding();
+#endif
+
+    app.MapGet("/testget", () => "Hello World");
 
     app.Run();
 }

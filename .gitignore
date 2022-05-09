@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+*.map
+/IdentityServer/wwwroot/lib
+*.db-shm
+*.db-wal
+/IdentityServer/IdentityServer.db
+/Identity.DataAccess/IdentityServer.db
